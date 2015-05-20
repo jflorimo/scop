@@ -6,14 +6,11 @@
 /*   By: zion <zion@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:35 by zion              #+#    #+#             */
-/*   Updated: 2015/05/20 21:09:40 by zion             ###   ########.fr       */
+/*   Updated: 2015/05/20 22:02:25 by zion             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/scop.h"
-
-# include <stdlib.h>
-# include <stdio.h>
 
 static void error_callback(int error, const char* description)
 {
@@ -34,6 +31,7 @@ int main(void)
 	glfwSetErrorCallback(error_callback);
 	if (!glfwInit())
 		exit(EXIT_FAILURE);
+
 	window = glfwCreateWindow(640, 480, "Simple example", NULL, NULL);
 	if (!window)
 	{
@@ -43,28 +41,58 @@ int main(void)
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(1);
 	glfwSetKeyCallback(window, key_callback);
+
+//----- http://www.opengl-tutorial.org/
+	GLuint vertex_array_id;
+	glGenVertexArrays(1, &vertex_array_id);
+	glBindVertexArray(vertex_array_id);
+
+	static const GLfloat vertex_buffer_data[] = {
+		-1.0f, -1.0f, 0.0f,
+		1.0f, -1.0f, 0.0f,
+		0.0f,  1.0f, 0.0f,
+	};
+
+	// This will identify our vertex buffer
+	GLuint vertex_buffer;
+
+	// Generate 1 buffer, put the resulting identifier in vertex_buffer
+	glGenBuffers(1, &vertex_buffer);
+
+	// The following commands will talk about our 'vertex_buffer' buffer
+	glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
+
+	// Give our vertices to OpenGL.
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_buffer_data), vertex_buffer_data, GL_STATIC_DRAW);
+//-----
+
 	while (!glfwWindowShouldClose(window))
 	{
-		float ratio;
 		int width, height;
 		glfwGetFramebufferSize(window, &width, &height);
-		ratio = width / (float) height;
 		glViewport(0, 0, width, height);
 		glClear(GL_COLOR_BUFFER_BIT);
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(-ratio, ratio, -1.f, 1.f, 1.f, -1.f);
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
-		glRotatef((float) glfwGetTime() * 50.f, 0.f, 0.f, 1.f);
-		glBegin(GL_TRIANGLES);
-		glColor3f(1.f, 0.f, 0.f);
-		glVertex3f(-0.6f, -0.4f, 0.f);
-		glColor3f(0.f, 1.f, 0.f);
-		glVertex3f(0.6f, -0.4f, 0.f);
-		glColor3f(0.f, 0.f, 1.f);
-		glVertex3f(0.f, 0.6f, 0.f);
-		glEnd();
+
+//-----
+		// 1rst attribute buffer : vertices
+		glEnableVertexAttribArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
+		glVertexAttribPointer(
+			0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+			3,                  // size
+			GL_FLOAT,           // type
+			GL_FALSE,           // normalized?
+			0,                  // stride
+			(void*)0            // array buffer of-lfset
+		);
+
+		// Draw the triangle !
+		glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
+
+		glDisableVertexAttribArray(0);
+
+//-----
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}

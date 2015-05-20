@@ -6,7 +6,7 @@
 #    By: zion <zion@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/26 13:13:47 by rbenjami          #+#    #+#              #
-#    Updated: 2015/05/20 21:07:29 by zion             ###   ########.fr        #
+#    Updated: 2015/05/20 21:56:41 by zion             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ INC				=	-I $(LIBS_DIR)/libft
 
 NAME			=	scop
 
-CFLAGS			=	-Wall -Wextra -Werror -O3 -g -pedantic
+CFLAGS			=	-Wall -Wextra -Werror -O3 -g
 
-INC				+=	-I includes
+INC				+=	-I includes -I /usr/include/GL/
 
 HEAD			=	includes/$(NAME).h
 
@@ -31,7 +31,7 @@ SRC				=	$(addprefix $(SRC_DIR)/, $(FILES))
 OBJ				=	$(SRC:.c=.o)
 
 LIBS_DIR		=	libs
-LIB				=	-L./$(LIBS_DIR)/libft -lft -lglfw3 -lGL -L/usr/X11/lib -lX11 -lpthread -lXxf86vm -lm -lXrandr -lXcursor -lXinerama -lXi
+LIB				=	-L./$(LIBS_DIR)/libft -lft -lglfw3 -lGL -lX11 -lpthread -lXxf86vm -lm -lXrandr -lXcursor -lXinerama -lXi
 include			$(LIBS_DIR)/libft/Makefile.sources
 OBJ_LIBFT		=	$($(LIBS_DIR)/libft/SRC_LIB:.c=.o)
 HEAD_LIBFT		=	$(LIBS_DIR)/libft/libft.h \
