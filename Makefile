@@ -29,7 +29,7 @@ HEAD			=	includes/$(NAME).h
 
 SRC_DIR			=	srcs/
 
-FILES			=	$(NAME).c
+FILES			=	$(NAME).c shaders_load.c
 
 SRC				=	$(addprefix $(SRC_DIR)/, $(FILES))
 
