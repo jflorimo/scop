@@ -6,19 +6,24 @@
 #    By: zion <zion@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/26 13:13:47 by rbenjami          #+#    #+#              #
-#    Updated: 2015/05/20 21:56:41 by zion             ###   ########.fr        #
+#    Updated: 2015/05/26 11:22:43 by jflorimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 export	CC		=	cc
 
+OS				:=	$(shell uname -s)
+
 INC				=	-I $(LIBS_DIR)/libft
+
+ifeq ($(OS),Darwin)
+	INC			+=	-I ~/.brew/include -I /System/Library/Frameworks/OpenGL.framework/Headers/
+else
+	INC			+=	-I includes -I /usr/include/GL/
+endif
 
 NAME			=	scop
 
 CFLAGS			=	-Wall -Wextra -Werror -O3 -g
-
-INC				+=	-I includes -I /usr/include/GL/
 
 HEAD			=	includes/$(NAME).h
 
@@ -31,7 +36,12 @@ SRC				=	$(addprefix $(SRC_DIR)/, $(FILES))
 OBJ				=	$(SRC:.c=.o)
 
 LIBS_DIR		=	libs
-LIB				=	-L./$(LIBS_DIR)/libft -lft -lglfw3 -lGL -lX11 -lpthread -lXxf86vm -lm -lXrandr -lXcursor -lXinerama -lXi
+ifeq ($(OS),Darwin)
+	LIB			=	-L ~/.brew/lib -lglfw3 -framework OpenGL
+else
+	LIB			=	-lGL -lX11 -lpthread -lXxf86vm -lm -lXrandr -lXcursor -lXinerama -lXi -lGLU
+endif
+LIB				+=	-L./$(LIBS_DIR)/libft -lft -lglfw3
 include			$(LIBS_DIR)/libft/Makefile.sources
 OBJ_LIBFT		=	$($(LIBS_DIR)/libft/SRC_LIB:.c=.o)
 HEAD_LIBFT		=	$(LIBS_DIR)/libft/libft.h \
@@ -64,4 +74,3 @@ fclean:			clean
 re:				fclean all
 
 .PHONY:			all clean fclean re
-

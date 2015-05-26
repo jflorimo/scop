@@ -13,9 +13,15 @@
 #ifndef SCOP_H
 # define SCOP_H
 
+// #ifdef __APPLE__
+// # define __gl_h_
+// # define GL_DO_NOT_WARN_IF_MULTI_GL_VERSION_HEADERS_INCLUDED
+// #endif
+
 # include <libft.h>
-# define GLFW_INCLUDE_GLU
-# define GL_GLEXT_PROTOTYPES
+// # define GLFW_INCLUDE_GLU
+// # define GL_GLEXT_PROTOTYPES
+# define GLFW_INCLUDE_GLCOREARB
 # include <GLFW/glfw3.h>
 
 #endif
