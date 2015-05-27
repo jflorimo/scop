@@ -9,7 +9,7 @@
 /*   Updated: 2015/05/20 22:02:25 by zion             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <stdio.h>
 # include "../includes/scop.h"
 
 int main(void)
@@ -63,6 +63,9 @@ int main(void)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_buffer_data), vertex_buffer_data, GL_STATIC_DRAW);
 //-----
 	GLuint programID = LoadShaders("shaders/vertexShader", "shaders/fragmentShader");
+
+	t_matrix pok = init_matrix_translation();
+
 	while (!glfwWindowShouldClose(window))
 	{
 		int width, height;
@@ -83,7 +86,9 @@ int main(void)
 			0,                  // stride
 			(void*)0            // array buffer of-lfset
 		);
+		GLuint MatrixID = glGetUniformLocation(programID, "MVP");
 
+		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &(pok[0][0]));
 		// Draw the triangle !
 		glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
 
