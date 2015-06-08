@@ -89,6 +89,7 @@ int main(void)
 		GLuint MatrixID = glGetUniformLocation(programID, "MVP");
 
 		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &(pok.m[0][0]));
+
 		// Draw the triangle !
 		glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
 

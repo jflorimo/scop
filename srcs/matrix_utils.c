@@ -2,6 +2,7 @@
 
 t_matrix init_matrix_translation(void)
 {
+
 	t_matrix m;
 
 	m.m[0][0] = 1; m.m[0][1] = 0; m.m[0][2] = 0; m.m[0][3] = 0.2;
