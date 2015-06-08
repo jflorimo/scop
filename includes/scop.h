@@ -28,4 +28,12 @@ void error_callback(int error, const char* description);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 GLuint LoadShaders(const char *vertex_file_path,const char *fragment_file_path);
 
+typedef struct		s_matrix
+{
+	float	m[4][4];
+}					t_matrix;
+
+t_matrix init_matrix_translation(void);
+t_matrix init_matrix_scale(void);
+
 #endif
