@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   scop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zion <zion@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:35 by zion              #+#    #+#             */
-/*   Updated: 2015/05/20 22:02:25 by zion             ###   ########.fr       */
+/*   Updated: 2015/06/10 14:44:07 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <stdio.h>
 # include "../includes/scop.h"
 
@@ -64,7 +65,18 @@ int main(void)
 //-----
 	GLuint programID = LoadShaders("shaders/vertexShader", "shaders/fragmentShader");
 
-	t_matrix pok = init_matrix_translation();
+	GLuint MID = glGetUniformLocation(programID, "M");
+	GLuint VID = glGetUniformLocation(programID, "V");
+	GLuint PID = glGetUniformLocation(programID, "P");
+
+	t_matrix M =  init_matrix_translation(0, 0, 0);
+	t_matrix V =  init_matrix_translation(0, 0, 0);
+	t_matrix P =  init_perspective(60 * M_PI / 180, 640/480, 0.1, 100);
+
+	t_matrix trans = init_matrix_translation(5, 0, 10);
+	t_matrix rotate = init_matrix_rotation_y(0.1);
+
+	V = multiply(trans, V);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -73,6 +85,12 @@ int main(void)
 		glViewport(0, 0, width, height);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glUseProgram(programID);
+
+		glUniformMatrix4fv(MID, 1, GL_FALSE, &M.m[0][0]);
+		glUniformMatrix4fv(VID, 1, GL_FALSE, &V.m[0][0]);
+		glUniformMatrix4fv(PID, 1, GL_FALSE, &P.m[0][0]);
+
+		V = multiply(rotate, V);
 
 //-----
 		// 1rst attribute buffer : vertices
@@ -86,9 +104,7 @@ int main(void)
 			0,                  // stride
 			(void*)0            // array buffer of-lfset
 		);
-		GLuint MatrixID = glGetUniformLocation(programID, "MVP");
 
-		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &(pok.m[0][0]));
 
 		// Draw the triangle !
 		glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle

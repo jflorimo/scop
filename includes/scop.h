@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scop.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zion <zion@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:45 by zion              #+#    #+#             */
-/*   Updated: 2015/05/20 21:58:52 by zion             ###   ########.fr       */
+/*   Updated: 2015/06/10 14:42:27 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 // # define GL_GLEXT_PROTOTYPES
 # define GLFW_INCLUDE_GLCOREARB
 # include <GLFW/glfw3.h>
+# include <math.h>
 
 void error_callback(int error, const char* description);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -33,8 +34,18 @@ typedef struct		s_matrix
 	float	m[4][4];
 }					t_matrix;
 
-t_matrix init_matrix_translation(void);
-t_matrix init_matrix_scale(void);
+typedef struct		s_vector
+{
+	float	v[4];
+}					t_vector;
+
+t_matrix init_matrix_translation(float x, float y, float z);
+t_matrix init_matrix_scale(float x, float y, float z);
+t_matrix init_perspective(float fov, float aspect, float z_near, float z_far);
+t_matrix multiply(t_matrix data1, t_matrix data2);
+t_matrix init_matrix_rotation_x(float x);
+t_matrix init_matrix_rotation_y(float y);
+t_matrix init_matrix_rotation_z(float z);
 
 
 #endif

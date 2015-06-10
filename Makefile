@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: zion <zion@student.42.fr>                  +#+  +:+       +#+         #
+#    By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/26 13:13:47 by rbenjami          #+#    #+#              #
-#    Updated: 2015/05/26 11:22:43 by jflorimo         ###   ########.fr        #
+#    Updated: 2015/06/10 14:29:15 by jflorimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 export	CC		=	cc
@@ -29,7 +29,8 @@ HEAD			=	includes/$(NAME).h
 
 SRC_DIR			=	srcs/
 
-FILES			=	$(NAME).c shaders_load.c glfw_utils.c matrix_utils.c
+FILES			=	$(NAME).c shaders_load.c glfw_utils.c matrix_utils.c vector_utils.c operations_utils.c \
+					matrix_rotation.c
 
 SRC				=	$(addprefix $(SRC_DIR)/, $(FILES))
 
