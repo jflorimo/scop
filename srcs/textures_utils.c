@@ -12,6 +12,10 @@ GLuint loadBMP_custom(const char *imagepath)
 
 	fd = open(imagepath, O_RDONLY);
 	rt = read(fd, texture.header, BMP_HEADER_SIZE);
+	if ( texture.header[0]!='B' || texture.header[1]!='M' ){
+		printf("Not a correct BMP file\n");
+		return 0;
+	}
 	texture.dataPos    = *(int*)&(texture.header[0x0A]);
 	texture.imageSize  = *(int*)&(texture.header[0x22]);
 	texture.width      = *(int*)&(texture.header[0x12]);
