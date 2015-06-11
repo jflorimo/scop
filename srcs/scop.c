@@ -169,7 +169,7 @@ int main(void)
 
 	V = multiply(V, trans);
 
-	GLuint Texture = loadBMP_custom("textures/wood.bmp");
+	GLuint Texture = loadBMP_custom("textures/cat.bmp");
 	(void)Texture;
 
 	glEnable(GL_DEPTH_TEST);
@@ -192,7 +192,7 @@ int main(void)
 		M[1] = multiply(rotate2,M[1] );
 		int i = 0;
 		int sizes[] = {12, 1};
-		while (i < 1)
+		while (i < 2)
 		{
 			glUniformMatrix4fv(MID, 1, GL_FALSE, &M[i].m[0][0]);
 	
