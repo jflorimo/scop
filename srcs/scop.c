@@ -149,6 +149,7 @@ int main(void)
 	glGenBuffers(1, &colorbuffer[1]);
 	glBindBuffer(GL_ARRAY_BUFFER, colorbuffer[1]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(color_buffer_data), color_buffer_data, GL_STATIC_DRAW);
+
 //-----
 	GLuint programID = LoadShaders("shaders/vertexShader", "shaders/fragmentShader");
 
@@ -191,10 +192,10 @@ int main(void)
 		M[1] = multiply(rotate2,M[1] );
 		int i = 0;
 		int sizes[] = {12, 1};
-		while (i < 2)
+		while (i < 1)
 		{
 			glUniformMatrix4fv(MID, 1, GL_FALSE, &M[i].m[0][0]);
-			// 1rst attribute buffer : vertices
+	
 			glEnableVertexAttribArray(0);
 			glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer[i]);
 			glVertexAttribPointer(
@@ -219,10 +220,10 @@ int main(void)
 
 			glDrawArrays(GL_TRIANGLES, 0, sizes[i]*3); // Starting from vertex 0; 3 vertices total -> 1 triangle
 			glDisableVertexAttribArray(0);
+			glDisableVertexAttribArray(1);
+			
 			i++;
 		}
-
-
 
 		// Draw the triangle !
 

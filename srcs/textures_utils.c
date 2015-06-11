@@ -28,6 +28,7 @@ GLuint loadBMP_custom(const char *imagepath)
 	printf("##:%d - %s, %d %d %d %d", rt, texture.header, texture.dataPos, texture.imageSize, texture.width, texture.height);
 	texture.data = malloc(sizeof(unsigned char) * texture.imageSize);
 	rt = read(fd, texture.data, texture.imageSize);
+	// write(1, texture.data, texture.imageSize);
 
 	GLuint textureID;
 	glGenTextures(1, &textureID);
@@ -40,5 +41,9 @@ GLuint loadBMP_custom(const char *imagepath)
 	 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+	// glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	// glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	// glGenerateMipmap(GL_TEXTURE_2D);
 	return (textureID);
 }
