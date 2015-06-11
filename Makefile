@@ -30,7 +30,7 @@ HEAD			=	includes/$(NAME).h
 SRC_DIR			=	srcs/
 
 FILES			=	$(NAME).c shaders_load.c glfw_utils.c matrix_utils.c vector_utils.c operations_utils.c \
-					matrix_rotation.c
+					matrix_rotation.c textures_utils.c
 
 SRC				=	$(addprefix $(SRC_DIR)/, $(FILES))
 

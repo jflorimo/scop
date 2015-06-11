@@ -10,25 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
+#include <libft.h>
 #include <stdio.h>
 # include "../includes/scop.h"
 
 int main(void)
 {
-
 	GLFWwindow* window;
 	glfwSetErrorCallback(error_callback);
 	if (!glfwInit())
 		exit(EXIT_FAILURE);
-
 
 	glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4); // We want OpenGL 3.3
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-
 
 	window = glfwCreateWindow(640, 480, "Simple example", NULL, NULL);
 	if (!window)
@@ -170,6 +168,9 @@ int main(void)
 
 	V = multiply(V, trans);
 
+	GLuint Texture = loadBMP_custom("textures/wood.bmp");
+	(void)Texture;
+
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
@@ -192,7 +193,6 @@ int main(void)
 		int sizes[] = {12, 1};
 		while (i < 2)
 		{
-
 			glUniformMatrix4fv(MID, 1, GL_FALSE, &M[i].m[0][0]);
 			// 1rst attribute buffer : vertices
 			glEnableVertexAttribArray(0);

@@ -24,10 +24,21 @@
 # define GLFW_INCLUDE_GLCOREARB
 # include <GLFW/glfw3.h>
 # include <math.h>
+# define BMP_HEADER_SIZE 54
 
 void error_callback(int error, const char* description);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 GLuint LoadShaders(const char *vertex_file_path,const char *fragment_file_path);
+
+typedef struct		s_bmp
+{
+	unsigned char header[54]; // Each BMP file begins by a 54-bytes header
+	unsigned int dataPos;     // Position in the file where the actual data begins
+	unsigned int width, height;
+	unsigned int imageSize;   // = width*height*3
+	// Actual RGB data
+	unsigned char * data;
+}					t_bmp;
 
 typedef struct		s_matrix
 {
@@ -47,5 +58,6 @@ t_matrix init_matrix_rotation_x(float x);
 t_matrix init_matrix_rotation_y(float y);
 t_matrix init_matrix_rotation_z(float z);
 
+GLuint loadBMP_custom(const char * imagepath);
 
 #endif
