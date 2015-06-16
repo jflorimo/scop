@@ -25,6 +25,8 @@
 # include <GLFW/glfw3.h>
 # include <math.h>
 # define BMP_HEADER_SIZE 54
+# define SCREEN_WIDTH 640
+# define SCREEN_HEIGHT 480
 
 void error_callback(int error, const char* description);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -59,5 +61,7 @@ t_matrix init_matrix_rotation_y(float y);
 t_matrix init_matrix_rotation_z(float z);
 
 GLuint loadBMP_custom(const char * imagepath);
+t_vector init_vec(float x, float y, float z, float w);
+void computeDataFromInputs(GLFWwindow* window, t_matrix* model);
 
 #endif

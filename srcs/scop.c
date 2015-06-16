@@ -28,7 +28,7 @@ int main(void)
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	window = glfwCreateWindow(640, 480, "Simple example", NULL, NULL);
+	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Simple example", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -132,6 +132,7 @@ int main(void)
 		0.982f,  0.099f,  0.879f
 	};
 
+
 	GLuint vertex_buffer[2];
 	glGenBuffers(1, &vertex_buffer[0]);
 	glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer[0]);
@@ -161,7 +162,7 @@ int main(void)
 	M[0] =  init_matrix_translation(0, 0, 0);
 	M[1] =  init_matrix_translation(5, 1, 0);
 	t_matrix V =  init_matrix_translation(0, 0, 0);
-	t_matrix P =  init_perspective(60 * M_PI / 180, 640/480, 0.1, 100);
+	t_matrix P =  init_perspective(60 * M_PI / 180, SCREEN_WIDTH/SCREEN_HEIGHT, 0.1, 100);
 
 	t_matrix trans = init_matrix_translation(0, -3, 10);
 	t_matrix rotate = init_matrix_rotation_y(0.01);
@@ -181,6 +182,7 @@ int main(void)
 		glfwGetFramebufferSize(window, &width, &height);
 		glViewport(0, 0, width, height);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		computeDataFromInputs(window, &M[0]);
 		glUseProgram(programID);
 
 
@@ -226,9 +228,7 @@ int main(void)
 		}
 
 		// Draw the triangle !
-
 //-----
-
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
