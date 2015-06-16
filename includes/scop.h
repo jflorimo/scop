@@ -28,6 +28,7 @@
 # define SCREEN_WIDTH 640
 # define SCREEN_HEIGHT 480
 
+
 void error_callback(int error, const char* description);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 GLuint LoadShaders(const char *vertex_file_path,const char *fragment_file_path);
@@ -49,8 +50,17 @@ typedef struct		s_matrix
 
 typedef struct		s_vector
 {
-	float	v[4];
+	float	v[3];
 }					t_vector;
+
+typedef struct		s_scop
+{
+	GLuint vertex_array_id;
+	GLuint indices_array_id;
+	int			indices_size;
+}					t_scop;
+
+t_scop *get_scop();
 
 t_matrix init_matrix_translation(float x, float y, float z);
 t_matrix init_matrix_scale(float x, float y, float z);
@@ -61,7 +71,11 @@ t_matrix init_matrix_rotation_y(float y);
 t_matrix init_matrix_rotation_z(float z);
 
 GLuint loadBMP_custom(const char * imagepath);
-t_vector init_vec(float x, float y, float z, float w);
+t_vector init_vec(float x, float y, float z);
+t_vector *alloc_vec(float x, float y, float z);
 void computeDataFromInputs(GLFWwindow* window, t_matrix* model);
+int loadObject(char *path);
+void init_object(t_list *vertex, t_list *indices);
+void exit_error_file(char *str);
 
 #endif

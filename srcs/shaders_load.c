@@ -50,7 +50,8 @@ GLuint LoadShaders(const char *vertex_file_path,const char *fragment_file_path)
 
 	char vertex_shader_error_message[1024];
 	glGetShaderInfoLog(VertexShaderID, InfoLogLength, NULL, vertex_shader_error_message);
-	printf("%s\n", vertex_shader_error_message);
+	write(2, vertex_shader_error_message, InfoLogLength);
+	// printf("VECTEX:%s\n", vertex_shader_error_message);
 
 	// Compile Fragment Shader
 	printf("Compiling shader : %s\n", fragment_file_path);
@@ -63,7 +64,7 @@ GLuint LoadShaders(const char *vertex_file_path,const char *fragment_file_path)
 	glGetShaderiv(FragmentShaderID, GL_INFO_LOG_LENGTH, &InfoLogLength);
 	char fragment_shader_error_message[1024];
 	glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, fragment_shader_error_message);
-	printf("%s\n", fragment_shader_error_message);
+	write(2, fragment_shader_error_message, InfoLogLength);
 
 	// Link the program
 	printf("Linking program\n");
@@ -77,7 +78,8 @@ GLuint LoadShaders(const char *vertex_file_path,const char *fragment_file_path)
 	glGetProgramiv(ProgramID, GL_INFO_LOG_LENGTH, &InfoLogLength);
 	char program_shader_error_message[1024];
 	glGetProgramInfoLog(ProgramID, InfoLogLength, NULL, program_shader_error_message);
-	printf("%s\n", program_shader_error_message);
+	// printf("PROGRAM:%s\n", program_shader_error_message);
+	write(2, program_shader_error_message, InfoLogLength);
 
 	glDeleteShader(VertexShaderID);
 	glDeleteShader(FragmentShaderID);
