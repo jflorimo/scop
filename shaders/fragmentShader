@@ -3,7 +3,15 @@
 in vec2 UV;
 out vec3 color;
 uniform sampler2D myTextureSampler;
+uniform int renderMode;
  
 void main(){
-	color = texture( myTextureSampler, UV ).rgb;
+	if (renderMode == 5)
+	{
+		color = texture( myTextureSampler, UV ).rgb;
+	}
+	else
+	{
+		color = vec3(1,0,0);
+	}
 }

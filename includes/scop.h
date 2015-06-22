@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:45 by zion              #+#    #+#             */
-/*   Updated: 2015/06/22 13:13:10 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/22 14:18:30 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct		s_scop
 {
 	GLuint vertex_array_id;
 	GLuint indices_array_id;
+	GLint	render_mode;
 	int			indices_size;
 }					t_scop;
 
@@ -76,7 +77,7 @@ t_matrix init_matrix_rotation_z(float z);
 GLuint loadBMP_custom(const char * imagepath);
 t_vector init_vec(float x, float y, float z);
 t_vector *alloc_vec(float x, float y, float z);
-void computedatafrominputs(GLFWwindow* window, t_matrix* model);
+void computedatafrominputs(GLFWwindow* window, t_matrix* model, t_scop* scocop);
 int loadObject(char *path);
 void init_object(t_list *vertex, t_list *indices);
 void exit_error_file(char *str);

@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:35 by zion              #+#    #+#             */
-/*   Updated: 2015/06/22 13:13:17 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/22 14:18:58 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int main(void)
 	GLuint MID = glGetUniformLocation(programID, "M");
 	GLuint VID = glGetUniformLocation(programID, "V");
 	GLuint PID = glGetUniformLocation(programID, "P");
+	scocop->render_mode = glGetUniformLocation(programID, "renderMode");
 
 	t_matrix M;
 	M =  init_matrix_translation(0, 0, 0);
@@ -89,7 +90,7 @@ int main(void)
 		glfwGetFramebufferSize(window, &width, &height);
 		glViewport(0, 0, width, height);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		computedatafrominputs(window, &M);
+		computedatafrominputs(window, &M, scocop);
 		glUseProgram(programID);
 
 		glUniformMatrix4fv(VID, 1, GL_FALSE, &V.m[0][0]);
