@@ -72,3 +72,24 @@ t_matrix multiply(t_matrix data1, t_matrix data2)
 	}
 	return (res);
 }
+
+void multiply_ptr(t_matrix data1, t_matrix *data2)
+{
+	int			i;
+	int			j;
+
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			data2->m[i][j] = data1.m[i][0] * data2->m[0][j] + \
+							data1.m[i][1] * data2->m[1][j] + \
+							data1.m[i][2] * data2->m[2][j] + \
+							data1.m[i][3] * data2->m[3][j];
+			j++;
+		}
+		i++;
+	}
+}

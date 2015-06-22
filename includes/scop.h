@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:45 by zion              #+#    #+#             */
-/*   Updated: 2015/06/10 14:42:27 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/22 11:56:32 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define BMP_HEADER_SIZE 54
 # define SCREEN_WIDTH 640
 # define SCREEN_HEIGHT 480
+# define MOVE_STEP 0.1 
+
 
 void error_callback(int error, const char* description);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -49,19 +51,33 @@ typedef struct		s_matrix
 
 typedef struct		s_vector
 {
-	float	v[4];
+	float	v[3];
 }					t_vector;
+
+typedef struct		s_scop
+{
+	GLuint vertex_array_id;
+	GLuint indices_array_id;
+	int			indices_size;
+}					t_scop;
+
+t_scop *get_scop();
 
 t_matrix init_matrix_translation(float x, float y, float z);
 t_matrix init_matrix_scale(float x, float y, float z);
 t_matrix init_perspective(float fov, float aspect, float z_near, float z_far);
 t_matrix multiply(t_matrix data1, t_matrix data2);
+void	 multiply_ptr(t_matrix data1, t_matrix *data2);
 t_matrix init_matrix_rotation_x(float x);
 t_matrix init_matrix_rotation_y(float y);
 t_matrix init_matrix_rotation_z(float z);
 
 GLuint loadBMP_custom(const char * imagepath);
-t_vector init_vec(float x, float y, float z, float w);
+t_vector init_vec(float x, float y, float z);
+t_vector *alloc_vec(float x, float y, float z);
 void computeDataFromInputs(GLFWwindow* window, t_matrix* model);
+int loadObject(char *path);
+void init_object(t_list *vertex, t_list *indices);
+void exit_error_file(char *str);
 
 #endif
