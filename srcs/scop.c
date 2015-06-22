@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:35 by zion              #+#    #+#             */
-/*   Updated: 2015/06/22 12:15:40 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/22 13:13:17 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int main(void)
 		glfwGetFramebufferSize(window, &width, &height);
 		glViewport(0, 0, width, height);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		computeDataFromInputs(window, &M);
+		computedatafrominputs(window, &M);
 		glUseProgram(programID);
 
 		glUniformMatrix4fv(VID, 1, GL_FALSE, &V.m[0][0]);

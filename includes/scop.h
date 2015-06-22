@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:45 by zion              #+#    #+#             */
-/*   Updated: 2015/06/22 11:56:32 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/22 13:13:10 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_matrix init_matrix_rotation_z(float z);
 GLuint loadBMP_custom(const char * imagepath);
 t_vector init_vec(float x, float y, float z);
 t_vector *alloc_vec(float x, float y, float z);
-void computeDataFromInputs(GLFWwindow* window, t_matrix* model);
+void computedatafrominputs(GLFWwindow* window, t_matrix* model);
 int loadObject(char *path);
 void init_object(t_list *vertex, t_list *indices);
 void exit_error_file(char *str);
