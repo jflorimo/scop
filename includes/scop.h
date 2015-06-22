@@ -30,6 +30,7 @@
 # define MOVE_STEP 0.1 
 
 
+
 void error_callback(int error, const char* description);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 GLuint LoadShaders(const char *vertex_file_path,const char *fragment_file_path);

@@ -7,7 +7,11 @@ uniform mat4 V;
 uniform mat4 P;
  
 void main(){
+<<<<<<< HEAD
 	gl_Position =  P * V * M * vertexPosition_modelspace;
+=======
+	gl_Position =  P * V * M * vec4(vertexPosition_modelspace, 1);
+>>>>>>> FETCH_HEAD
 
 	//UV = (vec4(vertexPosition_modelspace, 1 ) * M).xy;
 	UV = vertexPosition_modelspace.xy;
