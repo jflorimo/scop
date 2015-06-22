@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:35 by zion              #+#    #+#             */
-/*   Updated: 2015/06/18 14:35:40 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/22 12:15:40 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,9 @@ int main(void)
 	glGenVertexArrays(1, &vertex_array_id);
 	glBindVertexArray(vertex_array_id);
 
-<<<<<<< HEAD
+
 	loadObject("objs/42.obj");
-=======
-	loadObject("objs/teapot.obj");
->>>>>>> FETCH_HEAD
+
 //-----
 	GLuint programID = LoadShaders("shaders/vertexShader", "shaders/fragmentShader");
 
@@ -71,13 +69,10 @@ int main(void)
 	t_matrix V =  init_matrix_translation(0, 0, 0);
 	t_matrix P =  init_perspective(60 * M_PI / 180, SCREEN_WIDTH/SCREEN_HEIGHT, 0.1, 100);
 
-<<<<<<< HEAD
 	t_matrix trans = init_matrix_translation(0, -3, 30);
-	// t_matrix rotate = init_matrix_rotation_y(0.01);
-=======
-	t_matrix trans = init_matrix_translation(0, -3, 10);
-	t_matrix rotate = init_matrix_rotation_y(0.01);
->>>>>>> FETCH_HEAD
+
+	t_matrix rotate = init_matrix_rotation_y(0.1);
+
 
 
 	V = multiply(V, trans);
@@ -100,11 +95,8 @@ int main(void)
 		glUniformMatrix4fv(VID, 1, GL_FALSE, &V.m[0][0]);
 		glUniformMatrix4fv(PID, 1, GL_FALSE, &P.m[0][0]);
 
-<<<<<<< HEAD
-		// M = multiply(rotate,M);
-=======
 		M = multiply(rotate,M);
->>>>>>> FETCH_HEAD
+
 
 		glUniformMatrix4fv(MID, 1, GL_FALSE, &M.m[0][0]);
 
