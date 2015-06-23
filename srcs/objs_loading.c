@@ -3,24 +3,17 @@
 #include <libft.h>
 #include "../includes/scop.h"
 
-char *trim(char *str)
+t_rf *init_data(char *path)
 {
-	char *end;
+	t_rf *rf;
+	
+	rf = malloc(sizeof(t_rf));
+	rf->fd = open(path, O_RDONLY);
+	rf->vertex = new_list();
+	rf->indices = new_list();
 
-	// Trim leading space
-	while(ft_isspace(*str)) str++;
+	return (rf);
 
-	if(*str == 0)  // All spaces?
-	return str;
-
-	// Trim trailing space
-	end = str + ft_strlen(str) - 1;
-	while(end > str && ft_isspace(*end)) end--;
-
-	// Write new null terminator
-	*(end+1) = 0;
-
-	return str;
 }
 
 int loadObject(char *path)

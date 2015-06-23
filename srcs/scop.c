@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:35 by zion              #+#    #+#             */
-/*   Updated: 2015/06/22 14:18:58 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/23 10:27:43 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int main(void)
 {
 	t_scop* scocop;
 	scocop = get_scop();
+	scocop->state_render = 0;
 
 	GLFWwindow* window;
 	glfwSetErrorCallback(error_callback);

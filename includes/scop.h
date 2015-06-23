@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:45 by zion              #+#    #+#             */
-/*   Updated: 2015/06/22 14:18:30 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/23 10:57:34 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,23 @@ typedef struct		s_scop
 	GLuint vertex_array_id;
 	GLuint indices_array_id;
 	GLint	render_mode;
+	int		state_render;
 	int			indices_size;
 }					t_scop;
 
+typedef struct		s_rf
+{
+	char		*line;
+	int			fd;
+	t_list		*vertex;
+	t_list		*indices;
+	float		tab[3];
+	int			tabf[4];
+	int			ret;
+	int *ttmp;
+}					t_rf;
+
+char *trim(char *str);
 t_scop *get_scop();
 
 t_matrix init_matrix_translation(float x, float y, float z);
