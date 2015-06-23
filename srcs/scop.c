@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:35 by zion              #+#    #+#             */
-/*   Updated: 2015/06/23 16:10:56 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/23 16:20:46 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,34 @@ t_scop *get_scop()
 	return (&scop);
 }
 
-int main(void)
+void init_scocop(t_scop *scop)
 {
-	t_scop* scocop;
-	scocop = get_scop();
-	scocop->state_render = 0;
-
-	GLFWwindow* window;
+	scop->state_render = 0;
 	glfwSetErrorCallback(error_callback);
 	if (!glfwInit())
 		exit(EXIT_FAILURE);
-
-	glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4); // We want OpenGL 3.3
+	glfwWindowHint(GLFW_SAMPLES, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Simple example", NULL, NULL);
-	if (!window)
+	scop->window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Scocop", NULL, NULL);
+	if (!scop->window)
 	{
 		glfwTerminate();
 		exit(EXIT_FAILURE);
 	}
-	glfwMakeContextCurrent(window);
+	glfwMakeContextCurrent(scop->window);
 	glfwSwapInterval(1);
-	glfwSetKeyCallback(window, key_callback);
+	glfwSetKeyCallback(scop->window, key_callback);
+}
+
+int main(void)
+{
+	t_scop* s;
+	
+	s = get_scop();
+	init_scocop(s);	
 
 //----- http://www.opengl-tutorial.org/
 	GLuint vertex_array_id;
@@ -55,8 +57,8 @@ int main(void)
 	glBindVertexArray(vertex_array_id);
 
 	//load_object("objs/teapot.obj");
-	//load_object("objs/teapot2.obj");
-	load_object("objs/42.obj");
+	load_object("objs/teapot2.obj");
+	//load_object("objs/42.obj");
 
 //-----
 	GLuint programID = load_shaders("shaders/vertexShader", "shaders/fragmentShader");
@@ -64,7 +66,7 @@ int main(void)
 	GLuint MID = glGetUniformLocation(programID, "M");
 	GLuint VID = glGetUniformLocation(programID, "V");
 	GLuint PID = glGetUniformLocation(programID, "P");
-	scocop->render_mode = glGetUniformLocation(programID, "renderMode");
+	s->render_mode = glGetUniformLocation(programID, "renderMode");
 
 	t_matrix M;
 	M =  init_matrix_translation(0, 0, 0);
@@ -86,13 +88,13 @@ int main(void)
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
-	while (!glfwWindowShouldClose(window))
+	while (!glfwWindowShouldClose(s->window))
 	{
 		int width, height;
-		glfwGetFramebufferSize(window, &width, &height);
+		glfwGetFramebufferSize(s->window, &width, &height);
 		glViewport(0, 0, width, height);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		computedatafrominputs(window, &M, scocop);
+		computedatafrominputs(s->window, &M, s);
 		glUseProgram(programID);
 
 		glUniformMatrix4fv(VID, 1, GL_FALSE, &V.m[0][0]);
@@ -104,7 +106,7 @@ int main(void)
 		glUniformMatrix4fv(MID, 1, GL_FALSE, &M.m[0][0]);
 
 		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ARRAY_BUFFER,scocop->vertex_array_id);
+		glBindBuffer(GL_ARRAY_BUFFER,s->vertex_array_id);
 		glVertexAttribPointer(
 			0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
 			3,                  // size
@@ -114,12 +116,12 @@ int main(void)
 			(void*)0            // array buffer of-lfset
 		);
 
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, scocop->indices_array_id);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, s->indices_array_id);
 		 
 		 // Draw the triangles !
 		 glDrawElements(
 		     GL_TRIANGLES,      // mode
-		     scocop->indices_size,    // count
+		     s->indices_size,    // count
 		     GL_UNSIGNED_INT,   // type
 		     (void*)0           // element array buffer offset
 		 );
@@ -128,10 +130,10 @@ int main(void)
 
 		// Draw the triangle !
 //-----
-		glfwSwapBuffers(window);
+		glfwSwapBuffers(s->window);
 		glfwPollEvents();
 	}
-	glfwDestroyWindow(window);
+	glfwDestroyWindow(s->window);
 	glfwTerminate();
 	exit(EXIT_SUCCESS);
 }

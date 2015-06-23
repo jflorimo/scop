@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:45 by zion              #+#    #+#             */
-/*   Updated: 2015/06/23 15:55:30 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/23 16:15:29 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct		s_scop
 	GLint	render_mode;
 	int		state_render;
 	int			indices_size;
+	GLFWwindow* window;
 }					t_scop;
 
 typedef struct		s_rf
