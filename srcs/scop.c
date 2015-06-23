@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:35 by zion              #+#    #+#             */
-/*   Updated: 2015/06/23 10:27:43 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/23 13:41:02 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ int main(void)
 	glGenVertexArrays(1, &vertex_array_id);
 	glBindVertexArray(vertex_array_id);
 
-
-	loadObject("objs/42.obj");
+	//load_object("objs/teapot.obj");
+	 //load_object("objs/teapot2.obj");
+	load_object("objs/42.obj");
 
 //-----
 	GLuint programID = LoadShaders("shaders/vertexShader", "shaders/fragmentShader");
@@ -73,7 +74,7 @@ int main(void)
 
 	t_matrix trans = init_matrix_translation(0, -3, 30);
 
-	t_matrix rotate = init_matrix_rotation_y(0.1);
+	t_matrix rotate = init_matrix_rotation_y(0.01);
 
 
 

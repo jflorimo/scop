@@ -4,6 +4,7 @@ in vec2 UV;
 out vec3 color;
 uniform sampler2D myTextureSampler;
 uniform int renderMode;
+flat in vec3 face_color;
  
 void main(){
 	if (renderMode == 5)
@@ -12,6 +13,9 @@ void main(){
 	}
 	else
 	{
-		color = vec3(1,0,0);
+		//color = vec3(1,0,0);
+		color = face_color;
+		color.r = 255;
 	}
+
 }

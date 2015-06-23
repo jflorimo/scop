@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:45 by zion              #+#    #+#             */
-/*   Updated: 2015/06/23 10:57:34 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/23 13:30:17 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,16 @@ typedef struct		s_rf
 	float		tab[3];
 	int			tabf[4];
 	int			ret;
-	int *ttmp;
+	int			*ttmp;
 }					t_rf;
+
+typedef struct		s_iob
+{
+	t_scop* scocop;
+	t_elem *tmp;
+	t_vector *vector;
+	float *vertex_data;
+}					t_iob;
 
 char *trim(char *str);
 t_scop *get_scop();
@@ -92,7 +100,7 @@ GLuint loadBMP_custom(const char * imagepath);
 t_vector init_vec(float x, float y, float z);
 t_vector *alloc_vec(float x, float y, float z);
 void computedatafrominputs(GLFWwindow* window, t_matrix* model, t_scop* scocop);
-int loadObject(char *path);
+int load_object(char *path);
 void init_object(t_list *vertex, t_list *indices);
 void exit_error_file(char *str);
 
