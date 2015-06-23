@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:45 by zion              #+#    #+#             */
-/*   Updated: 2015/06/23 13:30:17 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/23 14:31:36 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,13 @@ typedef struct		s_iob
 	float *vertex_data;
 }					t_iob;
 
+typedef struct		s_bmp_init
+{
+	int fd;
+	int rt;
+	GLuint textureID;
+}					t_bmp_init;
+
 char *trim(char *str);
 t_scop *get_scop();
 
@@ -96,12 +103,13 @@ t_matrix init_matrix_rotation_x(float x);
 t_matrix init_matrix_rotation_y(float y);
 t_matrix init_matrix_rotation_z(float z);
 
-GLuint loadBMP_custom(const char * imagepath);
+GLuint load_bmp_custom(const char * imagepath);
 t_vector init_vec(float x, float y, float z);
 t_vector *alloc_vec(float x, float y, float z);
 void computedatafrominputs(GLFWwindow* window, t_matrix* model, t_scop* scocop);
 int load_object(char *path);
 void init_object(t_list *vertex, t_list *indices);
 void exit_error_file(char *str);
+void exit_error_file_format();
 
 #endif

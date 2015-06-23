@@ -7,7 +7,7 @@ uniform int renderMode;
 flat in vec3 face_color;
  
 void main(){
-	if (renderMode == 5)
+	if (renderMode == 1)
 	{
 		color = texture( myTextureSampler, UV ).rgb;
 	}

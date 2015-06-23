@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:35 by zion              #+#    #+#             */
-/*   Updated: 2015/06/23 13:41:02 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/23 14:31:45 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int main(void)
 
 	V = multiply(V, trans);
 
-	GLuint Texture = loadBMP_custom("textures/cat.bmp");
+	GLuint Texture = load_bmp_custom("textures/cat.bmp");
 	(void)Texture;
 
 	glEnable(GL_DEPTH_TEST);
