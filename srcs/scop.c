@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:35 by zion              #+#    #+#             */
-/*   Updated: 2015/06/23 14:31:45 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/23 16:10:56 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ int main(void)
 	glBindVertexArray(vertex_array_id);
 
 	//load_object("objs/teapot.obj");
-	 //load_object("objs/teapot2.obj");
+	//load_object("objs/teapot2.obj");
 	load_object("objs/42.obj");
 
 //-----
-	GLuint programID = LoadShaders("shaders/vertexShader", "shaders/fragmentShader");
+	GLuint programID = load_shaders("shaders/vertexShader", "shaders/fragmentShader");
 
 	GLuint MID = glGetUniformLocation(programID, "M");
 	GLuint VID = glGetUniformLocation(programID, "V");

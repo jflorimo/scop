@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/20 20:18:45 by zion              #+#    #+#             */
-/*   Updated: 2015/06/23 14:31:36 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/23 15:55:30 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 void error_callback(int error, const char* description);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
-GLuint LoadShaders(const char *vertex_file_path,const char *fragment_file_path);
+GLuint load_shaders(const char *vertex_file_path,const char *fragment_file_path);
 
 typedef struct		s_bmp
 {
@@ -90,6 +90,26 @@ typedef struct		s_bmp_init
 	int rt;
 	GLuint textureID;
 }					t_bmp_init;
+
+typedef struct		s_shad_init
+{
+	GLuint vertex_shader_id;
+	GLuint fragment_shader_id ;
+
+	// Read the Vertex Shader code from the file
+	GLuint program_id;
+	GLint result;
+	int info_log_length;
+	char *vertex_code;
+	char *fragment_code;
+	char *line;
+	int fd;
+	char const *vertex_source_pointer;
+	char const *fragment_source_pointer;
+	char program_shader_error_message[1024];
+	char vertex_shader_error_message[1024];
+	char fragment_shader_error_message[1024];
+}					t_shad_init;
 
 char *trim(char *str);
 t_scop *get_scop();

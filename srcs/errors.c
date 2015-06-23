@@ -6,7 +6,7 @@
 /*   By: jflorimo <jflorimo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/22 13:15:25 by jflorimo          #+#    #+#             */
-/*   Updated: 2015/06/23 14:30:21 by jflorimo         ###   ########.fr       */
+/*   Updated: 2015/06/23 16:07:39 by jflorimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void exit_error_file(char *str)
 	exit (0);
 }
 
-void exit_error_file_format()
+void exit_error_file_format(void)
 {
 	printf("File error (NOT BMP)\n");
 	exit (0);
