@@ -24,3 +24,9 @@ void exit_error_file_format(void)
 	printf("File error (NOT BMP)\n");
 	exit (0);
 }
+
+void exit_error_file_object(void)
+{
+	printf("File error object\n");
+	exit (0);
+}

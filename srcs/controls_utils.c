@@ -18,9 +18,9 @@ void computedatafrominputs(GLFWwindow *window, t_matrix *model, t_scop *scocop)
 	static int val = 0;
 
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-		model->m[3][2] += MOVE_STEP;
+		model->m[3][2] += MOVE_STEP * 4;
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-		model->m[3][2] -= MOVE_STEP;
+		model->m[3][2] -= MOVE_STEP * 4;
 	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
 		model->m[3][0] += MOVE_STEP;
 	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
